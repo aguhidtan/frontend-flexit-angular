@@ -5,7 +5,7 @@ import { SearchResponse } from '../../models/search-response.model';
 import { SearchRequest } from 'src/app/models/search-request.model';
 
 @Component({
-  selector: 'app-spaceships',
+  selector: 'app-spaceship',
   templateUrl: './spaceship.component.html',
   styleUrls: ['./spaceship.component.css']
 })
