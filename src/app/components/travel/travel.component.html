@@ -1,1 +1,8 @@
-<p>travel works!</p>
+<ng-container [ngSwitch]="step">
+    <ng-container *ngSwitchDefault>
+        <app-travel-step-one [travelDate]="travelRequest.travelDate" [hotel]="travelRequest.hotel" (nextStep)="goToNextStep()"></app-travel-step-one>
+    </ng-container>
+    <ng-container *ngSwitchCase="2">
+        Step Two!
+    </ng-container>
+</ng-container>

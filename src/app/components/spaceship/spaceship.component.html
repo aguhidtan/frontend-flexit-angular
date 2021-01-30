@@ -1,7 +1,6 @@
 <div class="row" *ngIf="loading; else spaceShips">
     Loading Spaceships.....
 </div>
-
 <ng-template #spaceShips>
     <div class="row">
         <div class="col-2">
@@ -17,9 +16,11 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
+                        <th scope="col" (click)="sort()" class="selectable">Name</th>
                         <th scope="col">Booster</th>
                         <th scope="col">Weight</th>
+                        <th scope="col">Propellant</th>
+                        <th scope="col">LEO</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,11 @@
                         <td>{{spaceShip.name}}</td>
                         <td>{{spaceShip.booster}}</td>
                         <td>{{spaceShip.weight}}</td>
+                        <td> {{spaceShip.propellant?.name}}</td>
+                        <td *ngIf="spaceShip.leo; else llo">Yes</td>
+                        <ng-template #llo>
+                            <td>No</td>
+                        </ng-template>
                     </tr>
                 </tbody>
             </table>

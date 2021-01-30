@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+.selected {
+    background: #9CC8EE !important;
+}
+
+.selectable {
+    cursor: pointer;
+}

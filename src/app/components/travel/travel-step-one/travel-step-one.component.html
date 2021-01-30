@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-4">
+        <ngb-datepicker #dp [(ngModel)]="modelDate" (dateSelect)="loadHotels()"></ngb-datepicker>
+    </div>
+    <div class="col-4" *ngIf="!modelDate; then noDateSelectBlock else hotelsBlock"></div>
+    <ng-template #noDateSelectBlock>Select date to see available LEO Hotels</ng-template>
+    <ng-template #hotelsBlock>
+        <div class="col-4" *ngIf="loading; else hotelsTableBlock">
+            Loading hotels.....
+        </div>
+        <ng-template #hotelsTableBlock>
+            <div class="col-4" *ngIf="hotels && hotels.length > 0; else emptyHotels">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hotelAv of hotels; index as i" [ngClass]="{'selected': hotel?.id == hotelAv.id}" (click)="selectHotel(hotelAv)" class="selectable">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>{{ hotelAv.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-template #emptyHotels>
+                <div class="col-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <td colspan="2">No hotels available on selected date</td>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-template>
+        </ng-template>
+    </ng-template>
+</div>
+<div class="row mt-5">
+    <div class="col">
+        <button type="button" class="btn btn-primary" (click)="goToNextStep()" [disabled]="!modelDate || !hotel?.id">Next</button>
+    </div>
+</div>

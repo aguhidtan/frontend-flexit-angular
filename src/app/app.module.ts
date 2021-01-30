@@ -9,13 +9,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './components/menu/menu.component';
 import { TravelComponent } from './components/travel/travel.component';
+import { TravelStepOneComponent } from './components/travel/travel-step-one/travel-step-one.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     SpaceshipComponent,
-    TravelComponent
+    TravelComponent,
+    TravelStepOneComponent
   ],
   imports: [
     BrowserModule,

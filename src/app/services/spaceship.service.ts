@@ -4,12 +4,13 @@ import { SearchRequest } from '../models/search-request.model';
 import { Spaceship } from '../models/spaceship.model';
 import { SearchResponse } from '../models/search-response.model';
 import { Observable } from 'rxjs';
+import { URL_BASE } from '../constants/constans';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpaceshipService {
-  private url = 'http://localhost:8080/flexit/v1/spaceships/';
+  private url =  `${URL_BASE}/spaceships/`;
 
   constructor(private http: HttpClient) { }
 
