@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './components/menu/menu.component';
 import { TravelComponent } from './components/travel/travel.component';
 import { TravelStepOneComponent } from './components/travel/travel-step-one/travel-step-one.component';
+import { TravelStepTwoComponent } from './components/travel/travel-step-two/travel-step-two.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TravelStepOneComponent } from './components/travel/travel-step-one/trav
     MenuComponent,
     SpaceshipComponent,
     TravelComponent,
-    TravelStepOneComponent
+    TravelStepOneComponent,
+    TravelStepTwoComponent
   ],
   imports: [
     BrowserModule,

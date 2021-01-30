@@ -10,7 +10,7 @@
         </div>
         <ng-template #hotelsTableBlock>
             <div class="col-4" *ngIf="hotels && hotels.length > 0; else emptyHotels">
-                <table class="table table-striped">
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -27,7 +27,7 @@
             </div>
             <ng-template #emptyHotels>
                 <div class="col-4">
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -35,7 +35,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <td colspan="2">No hotels available on selected date</td>
+                            <tr>
+                                <td colspan="2">No hotels available on selected date</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -5,6 +5,7 @@ import { Spaceship } from '../models/spaceship.model';
 import { SearchResponse } from '../models/search-response.model';
 import { Observable } from 'rxjs';
 import { URL_BASE } from '../constants/constans';
+import { LunarCyclerHotel } from '../models/lunar-cycler-hotel.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,10 @@ export class SpaceshipService {
 
   search(searchRequest: SearchRequest<Spaceship>): Observable<SearchResponse<Spaceship>> {
     return this.http.post(`${this.url}search`, searchRequest) as any;
-  } 
+  }
+
+  searchAvailability(travelDate: Date, hotel: LunarCyclerHotel): Observable<Spaceship[]> {
+    const request = {travelDate: travelDate , hotelId: hotel.id};
+    return this.http.post(`${this.url}availability`, request) as any;
+  }
 }

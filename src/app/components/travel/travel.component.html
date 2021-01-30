@@ -1,8 +1,11 @@
 <ng-container [ngSwitch]="step">
     <ng-container *ngSwitchDefault>
-        <app-travel-step-one [travelDate]="travelRequest.travelDate" [hotel]="travelRequest.hotel" (nextStep)="goToNextStep()"></app-travel-step-one>
+        <app-travel-step-one [travelDate]="travelRequest.travelDate" [hotel]="travelRequest.hotel" (nextStep)="goToNextStep($event)"></app-travel-step-one>
     </ng-container>
     <ng-container *ngSwitchCase="2">
-        Step Two!
+        <app-travel-step-two [travelDate]="travelRequest.travelDate" [hotel]="travelRequest.hotel" (nextStep)="goToNextStep($event)"></app-travel-step-two>
+    </ng-container>
+    <ng-container *ngSwitchCase="3">
+        STEP 3!!!
     </ng-container>
 </ng-container>

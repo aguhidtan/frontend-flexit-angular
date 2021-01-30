@@ -10,12 +10,22 @@ export class TravelComponent implements OnInit {
   step = 1;
   travelRequest = new TravelRequest();
 
-  constructor() { }
+  constructor() { 
+    this.travelRequest.travelDate = new Date();
+  }
 
   ngOnInit(): void {
   }
 
-  goToNextStep() {
+  goToNextStep(body: TravelRequest) {
+    switch(this.step) {
+      case 2: 
+        this.travelRequest.spaceship = body.spaceship;
+        this.travelRequest.numTickets = body.numTickets;
+        break;
+      default:
+        this.travelRequest = body;
+    }
     this.step++;
   }
 }

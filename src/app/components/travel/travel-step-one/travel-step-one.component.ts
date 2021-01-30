@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 import { LunarCyclerHotel } from '../../../models/lunar-cycler-hotel.model';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import { LunarCyclerHotelService } from '../../../services/lunar-cycler-hotel.service';
+import { TravelRequest } from '../../../models/travel-request.model';
 
 @Component({
   selector: 'app-travel-step-one',
@@ -11,7 +12,7 @@ export class TravelStepOneComponent {
 
   @Input() travelDate!: Date;
   @Input() hotel!: LunarCyclerHotel;
-  @Output() nextStep = new EventEmitter<void>();
+  @Output() nextStep = new EventEmitter<TravelRequest>();
   modelDate!: NgbDateStruct;
   loading = false;
   hotels: LunarCyclerHotel[];
@@ -35,6 +36,9 @@ export class TravelStepOneComponent {
   }
 
   goToNextStep() {
-    this.nextStep.emit();
+    const body = new TravelRequest();
+    body.travelDate = this.travelDate;
+    body.hotel = this.hotel;
+    this.nextStep.emit(body);
   }
 }

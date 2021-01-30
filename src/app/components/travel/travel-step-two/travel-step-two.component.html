@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col">
+        <h2>Select Spaceship and tikets</h2>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-6" *ngIf="loading; else spaceshipsBlock">
+        Loading.....
+    </div>
+    <ng-template #spaceshipsBlock>
+        <div class="col-6" *ngIf="spaceships.length > 0; else emptySpaceshipsBlock">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Booster</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">Nº remains tickets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let spaceshipAv of spaceships" (click)="selectSpaship(spaceshipAv)" [ngClass]="{'selected': spaceship?.id == spaceshipAv.id}" class="selectable">
+                        <td>{{spaceshipAv.name}}</td>
+                        <td>{{spaceshipAv.booster}}</td>
+                        <td>{{spaceshipAv.weight}}</td>
+                        <td>{{spaceshipAv.remainTravelTickets}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #emptySpaceshipsBlock>
+            <div class="col-6" *ngIf="spaceships">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Booster</th>
+                            <th scope="col">Weight</th>
+                            <th scope="col">Nº remains tickets</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4">No available spacechips for selected date and LEO hotel</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+        <div class="col-4">
+            <label for="numTicketsInput" class="form-label" [class.text-danger]="spaceship.id && inputTicket.dirty && (numTickets <= 0 || numTickets > spaceship.remainTravelTickets)">Nº tickets</label>
+            <input type="number" #inputTicket="ngModel" name="numTicketsInput" class="form-control" id="nameFilter" [(ngModel)]="numTickets" [disabled]="!spaceship?.id" [class.is-invalid]="spaceship.id && inputTicket.dirty && (numTickets <= 0 || numTickets > spaceship.remainTravelTickets)">
+            <div class="invalid-feedback" *ngIf="spaceship.id && numTickets <= 0">
+                You have to select the number of tickets
+            </div>
+            <div class="invalid-feedback" *ngIf="spaceship.id && numTickets > spaceship.remainTravelTickets">
+                You can't buy more than {{spaceship.remainTravelTickets}}
+            </div>
+        </div>
+    </ng-template>
+</div>
+<div class="row mt-5">
+    <div class="col">
+        <button type="button" class="btn btn-primary" (click)="goToNextStep()" [disabled]="!spaceship?.id || numTickets <= 0 || numTickets > spaceship.remainTravelTickets">Next</button>
+    </div>
+</div>

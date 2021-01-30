@@ -9,4 +9,5 @@ export class Spaceship {
     propellant!: Propellant;
     leo!: boolean;
     markup!: number;
+    remainTravelTickets!: number;
 }
