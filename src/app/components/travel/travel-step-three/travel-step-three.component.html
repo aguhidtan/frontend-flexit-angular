@@ -17,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let package of travelPackages" [ngClass]="{'selected': travelPackage?.id == package.id}" class="selectable">
+                    <tr *ngFor="let package of travelPackages" (click)="selectPackage(package)" [ngClass]="{'selected': travelPackage?.id == package.id}" class="selectable">
                         <td>{{ package.name }}</td>
                         <td>{{ package.description }}</td>
                     </tr>
@@ -30,18 +30,18 @@
     <div class="row" *ngIf="travelPackage.lunarCyclerRoom">
         <div class="col-12">
             <p>Rates for Lunar Cycler Hotels rooms</p>
-            <!--<app-hotel-rate [artemisRoom]="false" (rateSelectedEmiter)="selectRate($event)"></app-hotel-rate>-->
+            <app-hotel-rate [artemisRoom]="false" (rateSelectedEmiter)="selectRate($event)"></app-hotel-rate>
         </div>
     </div>
     <div class="row" *ngIf="travelPackage.artemisRoom">
         <div class="col-12">
             <p>Rates for Artemis Hotels rooms</p>
-            <!--<app-hotel-rate [artemisRoom]="true" (rateSelectedEmiter)="selectRate($event, true)"></app-hotel-rate>-->
+            <app-hotel-rate [artemisRoom]="true" (rateSelectedEmiter)="selectRate($event, true)"></app-hotel-rate>
         </div>
     </div>
 </ng-container>
 <div class="row mt-5">
     <div class="col">
-        <button type="button" class="btn btn-primary" (click)="goToNextStep()">Next</button>
+        <button type="button" class="btn btn-primary" (click)="goToNextStep()" [disabled]="!isValidForm()">Next</button>
     </div>
 </div>

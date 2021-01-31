@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angu
 import { SpaceshipService } from '../../../services/spaceship.service';
 import { LunarCyclerHotel } from 'src/app/models/lunar-cycler-hotel.model';
 import { Spaceship } from '../../../models/spaceship.model';
-import { TravelRequest } from '../../../models/travel-request.model';
+import { Travel } from '../../../models/travel.model';
 
 @Component({
   selector: 'app-travel-step-two',
@@ -12,7 +12,7 @@ export class TravelStepTwoComponent implements OnChanges {
 
   @Input() travelDate!: Date;
   @Input() hotel!: LunarCyclerHotel;
-  @Output() nextStep = new EventEmitter<TravelRequest>();
+  @Output() nextStep = new EventEmitter<Travel>();
   loading = false;
   spaceships: Spaceship[] = [];
   spaceship!: Spaceship;
@@ -34,7 +34,7 @@ export class TravelStepTwoComponent implements OnChanges {
   }
 
   goToNextStep() {
-    const body = new TravelRequest();
+    const body = new Travel();
     body.spaceship = this.spaceship;
     body.numTickets = this.numTickets;
     this.nextStep.emit(body);

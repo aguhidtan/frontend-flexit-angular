@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
-import { TravelRequest } from '../../../models/travel-request.model';
+import { Travel } from '../../../models/travel.model';
 import { TravelPackage } from '../../../models/travel-package.model';
 import { TravelPackageService } from '../../../services/travel-package.service';
 import { HotelRate } from '../../../models/hotel-rate.model';
@@ -8,9 +8,9 @@ import { HotelRate } from '../../../models/hotel-rate.model';
   selector: 'app-travel-step-three',
   templateUrl: './travel-step-three.component.html'
 })
-export class TravelStepThreeComponent implements OnChanges {
+export class TravelStepThreeComponent implements OnInit {
 
-  @Output() nextStep = new EventEmitter<TravelRequest>();
+  @Output() nextStep = new EventEmitter<Travel>();
   travelPackages: TravelPackage[] = [];
   travelPackage!: TravelPackage;
   rateLunarCyclerRoom!: HotelRate;
@@ -19,7 +19,7 @@ export class TravelStepThreeComponent implements OnChanges {
   
   constructor(private travelPackageService: TravelPackageService) { }
 
-  ngOnChanges(): void {
+  ngOnInit(): void {
     this.loading = true;
     this.travelPackage = new TravelPackage();
     this.rateLunarCyclerRoom = new HotelRate();
@@ -30,6 +30,16 @@ export class TravelStepThreeComponent implements OnChanges {
     });
   }
 
+  selectPackage(travelPackage: TravelPackage): void {
+    this.travelPackage = travelPackage;
+    if(!travelPackage.lunarCyclerRoom) {
+      this.rateLunarCyclerRoom = new HotelRate();
+    }
+    if(!travelPackage.artemisRoom) {
+      this.rateArtemisRoom = new HotelRate();
+    }
+  }
+
   selectRate(rate: HotelRate, artemisRoom: boolean = false): void {
     if(artemisRoom) {
       this.rateArtemisRoom = rate;
@@ -38,11 +48,14 @@ export class TravelStepThreeComponent implements OnChanges {
     }
   }
 
-  goToNextStep(): TravelRequest {
-    return new TravelRequest();
+  goToNextStep(): void {
+    const body = new Travel();
+    body.travelPackage = this.travelPackage;
+    body.lunarCyclerRate = this.rateLunarCyclerRoom;
+    body.artemisRate = this.rateArtemisRoom;
+    this.nextStep.emit(body);
   }
 
-  /*
   isValidForm(): boolean {
     if(this.travelPackage?.id == undefined) {
       return false;
@@ -55,5 +68,5 @@ export class TravelStepThreeComponent implements OnChanges {
     } else {
       return true;
     }
-  }*/
+  }
 }

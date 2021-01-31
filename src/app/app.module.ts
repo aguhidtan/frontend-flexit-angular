@@ -13,6 +13,7 @@ import { TravelStepOneComponent } from './components/travel/travel-step-one/trav
 import { TravelStepTwoComponent } from './components/travel/travel-step-two/travel-step-two.component';
 import { TravelStepThreeComponent } from './components/travel/travel-step-three/travel-step-three.component';
 import { HotelRateComponent } from './components/hotel-rate/hotel-rate.component';
+import { TravelResumeComponent } from './components/travel/travel-resume/travel-resume.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HotelRateComponent } from './components/hotel-rate/hotel-rate.component
     TravelStepOneComponent,
     TravelStepTwoComponent,
     TravelStepThreeComponent,
-    HotelRateComponent
+    HotelRateComponent,
+    TravelResumeComponent
   ],
   imports: [
     BrowserModule,

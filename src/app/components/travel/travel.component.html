@@ -1,11 +1,14 @@
 <ng-container [ngSwitch]="step">
-    <ng-container *ngSwitchDefault>
+    <ng-container *ngSwitchCase="1">
         <app-travel-step-one [travelDate]="travelRequest.travelDate" [hotel]="travelRequest.hotel" (nextStep)="goToNextStep($event)"></app-travel-step-one>
     </ng-container>
     <ng-container *ngSwitchCase="2">
         <app-travel-step-two [travelDate]="travelRequest.travelDate" [hotel]="travelRequest.hotel" (nextStep)="goToNextStep($event)"></app-travel-step-two>
     </ng-container>
     <ng-container *ngSwitchCase="3">
-        <app-travel-step-three></app-travel-step-three>
+        <app-travel-step-three (nextStep)="goToNextStep($event)"></app-travel-step-three>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+        <app-travel-resume [travel]="travelRequest"></app-travel-resume>
     </ng-container>
 </ng-container>

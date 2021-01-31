@@ -4,4 +4,5 @@ export class TravelPackage {
     description!: string;
     lunarCyclerRoom!: boolean;
     artemisRoom!: boolean;
+    artemisNumDays!: number;
 }

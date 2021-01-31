@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TravelRequest } from '../../models/travel-request.model';
+import { Travel } from '../../models/travel.model';
 
 @Component({
   selector: 'app-travel',
@@ -8,7 +8,7 @@ import { TravelRequest } from '../../models/travel-request.model';
 export class TravelComponent implements OnInit {
 
   step = 1;
-  travelRequest = new TravelRequest();
+  travelRequest = new Travel();
 
   constructor() { 
     this.travelRequest.travelDate = new Date();
@@ -17,14 +17,20 @@ export class TravelComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToNextStep(body: TravelRequest) {
+  goToNextStep(body: Travel) {
     switch(this.step) {
+      case 1:
+        this.travelRequest = body;
+        break;
       case 2: 
         this.travelRequest.spaceship = body.spaceship;
         this.travelRequest.numTickets = body.numTickets;
         break;
-      default:
-        this.travelRequest = body;
+      case 3:
+        this.travelRequest.travelPackage = body.travelPackage;
+        this.travelRequest.lunarCyclerRate = body.lunarCyclerRate;
+        this.travelRequest.artemisRate = body.artemisRate;
+        break;
     }
     this.step++;
   }

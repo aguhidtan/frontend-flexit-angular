@@ -1,0 +1,97 @@
+<div class="row" *ngIf="!travelDetail; else travelBlock">
+    <div class="col-12">
+        Loading detail.....
+    </div>
+</div>
+<ng-template #travelBlock>
+    <div class="row">
+        <div class="col-12">
+            <h3>Spaceship</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <label for="spaceshipName" class="form-label">Spaceship</label>
+            <p id="spaceshipName">{{travelDetail.spaceship.name}}</p>
+        </div>
+        <div class="col-3">
+            <label for="propellant" class="form-label">Propellant</label>
+            <p id="propellant">{{travelDetail.spaceship.propellant.name}}</p>
+        </div>
+        <div class="col-3">
+            <label for="propellantPrice" class="form-label">Price per unit</label>
+            <p id="propellantPrice">{{travelDetail.spaceship.propellant.price}}/{{travelDetail.spaceship.propellant.baseUnit}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h3>Hotel</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <label for="hotelName" class="form-label">Hotel</label>
+            <p id="hotelName">{{travelDetail.hotel.name}}</p>
+        </div>
+        <div class="col-3">
+            <label for="travelPackageName" class="form-label">Package name</label>
+            <p id="travelPackageName">{{travelDetail.travelPackage.name}}</p>
+        </div>
+        <div class="col-6">
+            <label for="travelPackageDesc" class="form-label">Package desc</label>
+            <p id="travelPackageDesc">{{travelDetail.travelPackage.description}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h3>Date and tickets</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <label for="travelDate" class="form-label">Day out</label>
+            <p id="travelDate">{{travelDetail.travelDate | date: "yyyy-MM-dd"}}</p>
+        </div>
+        <div class="col-3">
+            <label for="numTickets" class="form-label">Nº tickets</label>
+            <p id="numTickets">{{travelDetail.numTickets}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h3>Prices</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <label for="leoFlightPrice" class="form-label">LEO Flight Price</label>
+            <p id="leoFlightPrice">{{travelDetail.flightToLeoPrice | number }}</p>
+        </div>
+    </div>
+    <div class="row" *ngIf="travelDetail.travelPackage.lunarCyclerRoom">
+        <div class="col-3">
+            <label for="lunaCyclerPrice" class="form-label">Lunar cycler Hotel Price</label>
+            <p id="lunaCyclerPrice">{{travelDetail.lunarCyclerRoomPrice | number }}</p>
+        </div>
+    </div>
+    <div class="row" *ngIf="travelDetail.travelPackage.artemisRoom">
+        <div class="col-3">
+            <label for="artemisPrice" class="form-label">Artemis Hotel Price</label>
+            <p id="artemisPrice">{{travelDetail.artemisRoomPrice | number }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <label for="leoFlightPrice" class="form-label">Total</label>
+            <p id="leoFlightPrice">{{totalPrice | number }}</p>
+        </div>
+    </div>
+    <div class="row mt-5" *ngIf="!buying">
+        <div class="col" *ngIf="!confirmed; else confirmedMsgBlock">
+            <button type="button" class="btn btn-primary" (click)="buyTravel()">Buy</button>
+        </div>
+        <ng-template #confirmedMsgBlock>
+            <p>The travel has been confirmed!</p>
+        </ng-template>
+    </div>
+</ng-template>
