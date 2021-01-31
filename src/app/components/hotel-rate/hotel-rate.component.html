@@ -1,0 +1,14 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price per Day</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rate of hotelRates" class="selectable" [class.selected]="rateSelected?.id == rate.id" (click)="selectRate(rate)">
+            <td>{{rate.name}}</td>
+            <td>{{rate.pricePerDay}}</td>
+        </tr>
+    </tbody>
+</table>

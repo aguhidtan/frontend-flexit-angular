@@ -6,6 +6,6 @@
         <app-travel-step-two [travelDate]="travelRequest.travelDate" [hotel]="travelRequest.hotel" (nextStep)="goToNextStep($event)"></app-travel-step-two>
     </ng-container>
     <ng-container *ngSwitchCase="3">
-        STEP 3!!!
+        <app-travel-step-three></app-travel-step-three>
     </ng-container>
 </ng-container>

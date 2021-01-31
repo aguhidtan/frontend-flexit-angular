@@ -9,7 +9,7 @@
     </div>
     <ng-template #spaceshipsBlock>
         <div class="col-6" *ngIf="spaceships.length > 0; else emptySpaceshipsBlock">
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
@@ -30,7 +30,7 @@
         </div>
         <ng-template #emptySpaceshipsBlock>
             <div class="col-6" *ngIf="spaceships">
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>

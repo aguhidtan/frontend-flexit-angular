@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-12">
+        <h3>Select Package</h3>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-12" *ngIf="loading; else packagesBlock">
+        Loading Packages.....
+    </div>
+    <ng-template #packagesBlock>
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let package of travelPackages" [ngClass]="{'selected': travelPackage?.id == package.id}" class="selectable">
+                        <td>{{ package.name }}</td>
+                        <td>{{ package.description }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-template>
+</div>
+<ng-container *ngIf="travelPackage && (travelPackage.lunarCyclerRoom || travelPackage.artemisRoom)">
+    <div class="row" *ngIf="travelPackage.lunarCyclerRoom">
+        <div class="col-12">
+            <p>Rates for Lunar Cycler Hotels rooms</p>
+            <!--<app-hotel-rate [artemisRoom]="false" (rateSelectedEmiter)="selectRate($event)"></app-hotel-rate>-->
+        </div>
+    </div>
+    <div class="row" *ngIf="travelPackage.artemisRoom">
+        <div class="col-12">
+            <p>Rates for Artemis Hotels rooms</p>
+            <!--<app-hotel-rate [artemisRoom]="true" (rateSelectedEmiter)="selectRate($event, true)"></app-hotel-rate>-->
+        </div>
+    </div>
+</ng-container>
+<div class="row mt-5">
+    <div class="col">
+        <button type="button" class="btn btn-primary" (click)="goToNextStep()">Next</button>
+    </div>
+</div>
