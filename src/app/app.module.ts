@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SpaceshipComponent } from './components/spaceship/spaceship.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './components/menu/menu.component';
 import { TravelComponent } from './components/travel/travel.component';
 import { TravelStepOneComponent } from './components/travel/travel-step-one/travel-step-one.component';
@@ -32,6 +32,7 @@ import { TravelResumeComponent } from './components/travel/travel-resume/travel-
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule
   ],
   providers: [],
